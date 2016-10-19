@@ -148,20 +148,26 @@
     </div>
   </div>
 
-  
-	<script type="text/javascript">
 
+	<script type="text/javascript">
+    var dataGood = true;
+    
 	function getInput() {
 		// when the submit button is clicked
-		
+		console.log("enetering getInput, dataGood = ",dataGood);
+		dataGood = true;
 		$('#submit').on('click', function(){
 
 			if($("#name").val().trim() == ''){
 				alert("Please enter your name.");
+				dataGood = false;
+				console.log(dataGood);
 				return;
 			}
 			if($("#image").val().trim() == ''){
 				alert("Please enter your photo url.");
+				dataGood = false;
+				console.log(dataGood);
 				return;
 			}
 		
@@ -173,6 +179,7 @@
 				// check to make sure all questions were answered by user
 				if( $("input:radio[name=q"+i+"]:checked").val() == null ){
 					alert("Please answer all questions.");
+					dataGood = false;
 					return;
 				}  //if
 				else {
@@ -217,16 +224,16 @@
 			$("#name").val('');
 			$("#image").val('');
 			$("input:radio").attr("checked", false);
-			
-			
-			
+						
 		return;
 	}  //clearForm
 
     getInput();
-  
+    console.log(dataGood);
+    if (dataGood===false) {getInput; }
+    else {
     clearForm();
-
+     }
 
 	</script>
 
